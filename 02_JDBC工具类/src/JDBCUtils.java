@@ -12,6 +12,7 @@ import java.sql.SQLException;
     3.
  */
 public class JDBCUtils {
+
     private static Connection con;
     private JDBCUtils() {
     }
@@ -30,6 +31,7 @@ public class JDBCUtils {
             e.printStackTrace();
         }
     }
+
     /*
     * 定义静态方法，返回数据库的连接对象
     * */
