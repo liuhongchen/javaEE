@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/01_JDBC/01_JDBC.iml" filepath="$PROJECT_DIR$/01_JDBC/01_JDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_JDBC工具类/02_JDBC工具类.iml" filepath="$PROJECT_DIR$/02_JDBC工具类/02_JDBC工具类.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaEE.iml" filepath="$PROJECT_DIR$/javaEE.iml" />
     </modules>
   </component>
