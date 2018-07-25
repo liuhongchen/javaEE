@@ -6,6 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/02_JDBC工具类/02_JDBC工具类.iml" filepath="$PROJECT_DIR$/02_JDBC工具类/02_JDBC工具类.iml" />
       <module fileurl="file://$PROJECT_DIR$/03_DBUtils/03_DBUtils.iml" filepath="$PROJECT_DIR$/03_DBUtils/03_DBUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/04_QueryRunner/04_QueryRunner.iml" filepath="$PROJECT_DIR$/04_QueryRunner/04_QueryRunner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05_ResultSetHandler/05_ResultSetHandler.iml" filepath="$PROJECT_DIR$/05_ResultSetHandler/05_ResultSetHandler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06_连接池/06_连接池.iml" filepath="$PROJECT_DIR$/06_连接池/06_连接池.iml" />
+      <module fileurl="file://$PROJECT_DIR$/07_实战——记账软件/07_实战——记账软件.iml" filepath="$PROJECT_DIR$/07_实战——记账软件/07_实战——记账软件.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaEE.iml" filepath="$PROJECT_DIR$/javaEE.iml" />
     </modules>
   </component>

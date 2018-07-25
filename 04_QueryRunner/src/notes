@@ -1,4 +1,25 @@
 1.可以实现 insert delete 和update，调用QueryRunner的update方法
         update(Connection con,String sql[,Object...Param])
-        Object...Param可变参数，爱几个几个，自动识别，SQL语句中会出现问号占位符
+        Object...Param可变参数，爱几个几个，自动识别，SQL语句中会出现问号占位符,也可以传一个Object数组
         数据库的Connection对象，需要通过自定义工具类来传
+
+2.JavaBean
+    一个类，开发中用来封装数据
+    需要实现接口java.io.Serializable，通常实现接口省略了这个步骤，不会影响程序
+    提供私有字段 private 类型 字段名；
+    提供get和set方法
+    提供无参构造
+
+3.查询功能 query方法
+    （Connection con，String sql[，ResultSetHandler<T> rsh][,Object...Param])
+    其中ResultSetHandler需要写其实现类
+    返回值都是<T> T
+    例如
+      Object[] objs=queryRunner.query(con,sql,new ArrayHandler());
+      List<Object[]> arr=queryRunner.query(con,sql,new ArrayListHandler());
+      在使用该结果集之前要判断是否为null
+
+    Sort sort=queryRunner.query(con,sql, new BeanHandler<Sort>(Sort.class));
+    List<Sort> sorts=queryRunner.query(con,sql,new BeanListHandler<Sort>(Sort.class));
+
+

@@ -1,0 +1,33 @@
+1.实际开发中“获得连接”或“释放资源”是非常消耗系统资源的两个过程，为了解决此类性能问题，通常情况我们
+采用连接池技术，来共享连接Connection。这样我们就不需要每次都创建连接、释放连接了，这些操作都交给了连接池。
+
+2.连接池：
+    用池来管理Connection，这样可以重复使用Connection。有了池，所以我们就不用自己创建Connection，而是通过池
+    来获取Connection对象。当时用完Connection后，调用Connection的close()方法也不会真的关闭Connection，而是
+    把Connection归还给池。池就可以再利用这个Connection对象了。
+
+3.常见连接池
+    DBCP ：database connection pool，是tomcat的内置连接池
+    C3P0
+
+4.BasicDataSource类
+        BasicDataSource dataSource=new BasicDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db?serverTimezone=UTC");
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
+        Connection con=dataSource.getConnection();
+
+        常见配置项
+            driverClassName
+            url
+            username
+            password
+            maxActive 最大连接数量
+            minIdle 最小空闲连接   最少有几个连接是空闲的
+            maxIdle 最大空闲连接   最多有几个连接是空闲的
+            initialSize 初始化连接
+            都有对应的set方法
+
+
+

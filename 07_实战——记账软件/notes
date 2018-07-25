@@ -1,0 +1,32 @@
+1.项目中的分层
+    view层
+    controller层
+    service层
+    dao层
+    database层
+
+    画图看关系。
+
+    view层：
+        直接从用户获取数据，传入下一层；
+        接收来自controller层的数据，显示相关内容
+
+    controller层：
+        接收view的数据，传递给service层；
+        接收service层传来的结果，控制view的显示结果
+
+    service层：
+        接收controller层的数据，经过计算后将结果传递给dao层；
+        对dao层传来的结果集进行计算、过滤
+
+    dao层：
+        操作数据库，接到service层的数据，查询数据
+
+    domain实体包：
+        数据存储到了javabean类对象
+
+    tools工具包：
+        存放项目中使用到的工具类
+
+    test测试包：
+        存放项目功能测试的代码

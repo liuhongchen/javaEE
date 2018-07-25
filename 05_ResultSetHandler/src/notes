@@ -1,0 +1,30 @@
+1.分类：
+
+    ArrayHandler
+        将结果集中的第一条记录封装到一个Object数组中，数组中的每一个元素就是这条记录中的每一个字段值
+    ArrayListHandler
+        将结果集中的每一条记录都封装到一个Object数组中，将这些数组再封装到List集合中
+    BeanHandler
+        将结果几张第一条记录封装到一个指定的个javaBean中
+        其实就是创建了一个自定义对象
+        被封装成bean的类必须有空参构造，不然会报异常
+    BeanListHandler
+        将结果集中每一条记录封装到指定的javaBean中，将这些javaBean再封装到List集合中
+        其实就是创建了一个自定义对象集合
+    ColumnListHandler
+        将结果集中指定的列的字段值，封装到一个List集合中
+        只是从结果集中取出来，如果结果集中没有select的列，那就取不出来
+    ScalarHandler
+        它是用于单数据。例如 select count(*) from表操作
+        对于查询后只有一个结果的
+        String sql="select count(*) from sort";
+        long count=qr.query(con,sql,new ScalarHandler<Long>());
+
+    MapHandler
+        将结果集的第一行封装到一个Map集合中
+        键是列名，这列的数据
+        Map<String,Object> map=queryRunner.query(con,sql,new MapHandler());
+
+    MapListHandler
+        将结果集的每一行封装到一个Map集合中，存入List集合
+        List<Map<String,Object>> maps=queryRunner.query(con,sql,new MapListHandler());

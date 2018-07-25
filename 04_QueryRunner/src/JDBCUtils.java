@@ -33,45 +33,44 @@ public class JDBCUtils {
     }
 
     /*
-    * 定义静态方法，读取properties文件
-    * */
-    private static void readConfig() throws IOException {
-        InputStream in=JDBCUtils.class.getClassLoader().getResourceAsStream("database.properties");
-        Properties pro=new Properties();
-        pro.load(in);
-        driverClass=pro.getProperty("driverClass");
-        url=pro.getProperty("url");
-        username=pro.getProperty("username");
-        password=pro.getProperty("password");
+     * 定义静态方法，读取properties文件
+     * */
+    private static void readConfig() {
+        InputStream in = JDBCUtils.class.getClassLoader().getResourceAsStream("database.properties");
+        Properties pro = new Properties();
+        try {
+            pro.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        driverClass = pro.getProperty("driverClass");
+        url = pro.getProperty("url");
+        username = pro.getProperty("username");
+        password = pro.getProperty("password");
     }
 
 
     static {
-        try {
-            readConfig();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        readConfig();
         try {
             Class.forName(driverClass);
-            con=DriverManager.getConnection(url+"?serverTimezone=UTC", username, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            con = DriverManager.getConnection(url + "?serverTimezone=UTC", username, password);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
     /*
-    * 定义静态方法，返回数据库的连接对象
-    * */
-    public static Connection getConnection(){
+     * 定义静态方法，返回数据库的连接对象
+     * */
+    public static Connection getConnection() {
         return con;
     }
 
     /*
-    * 写关闭方法
-    * */
+     * 写关闭方法
+     * */
     public static void close(Connection con, Statement stat, ResultSet rs) throws SQLException {
         con.close();
         stat.close();
