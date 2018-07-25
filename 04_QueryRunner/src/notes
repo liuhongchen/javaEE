@@ -1,0 +1,4 @@
+1.可以实现 insert delete 和update，调用QueryRunner的update方法
+        update(Connection con,String sql[,Object...Param])
+        Object...Param可变参数，爱几个几个，自动识别，SQL语句中会出现问号占位符
+        数据库的Connection对象，需要通过自定义工具类来传

@@ -10,10 +10,15 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
+          <root url="jar://C:/Program Files/MySQL/mysql-jar/commons-dbutils-1.6/commons-dbutils-1.6.jar!/" />
           <root url="jar://C:/Program Files/MySQL/mysql-jar/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../01_JDBC/src" />
+          <root url="file://$MODULE_DIR$/../02_JDBC工具类/src" />
+          <root url="file://$MODULE_DIR$/src" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>
