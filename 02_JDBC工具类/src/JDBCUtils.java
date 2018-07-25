@@ -1,4 +1,4 @@
-import java.io.File;
+import java.io.*;
 import java.sql.*;
 
 /*
@@ -16,7 +16,7 @@ import java.sql.*;
         文件内容：一行一组数据，格式是“key=value”
             a）key命名自定义，如果是多个单词，习惯用点分隔。例如jdbc.driver
             b）value值不支持中文，如果需要使用非英文字符，将进行Unicode转换。
-    4.读取properties文件（通过IO流读取，存储到Map中
+    4.读取properties文件（通过IO流读取，存储到Map中)
 
  */
 public class JDBCUtils {
@@ -26,15 +26,40 @@ public class JDBCUtils {
     }
 
     static {
-        File file =new File("database.properties");
+        File file =new File("D:\\javaEE\\02_JDBC工具类\\src\\database.properties");
+        String driverClass=null;
+        String url=null;
+        String username=null;
+        String password=null;
+        try {
+            BufferedReader br= new BufferedReader(new FileReader(file));
+            String str=null;
+            while((str=br.readLine())!=null){
+                String[] strArr=str.split("=");
+                switch (strArr[0]){
+                    case "driverClass":
+                        driverClass=strArr[1];
+                        break;
+                    case "url":
+                        url=strArr[1];
+                        break;
+                    case "username":
+                        username=strArr[1];
+                        break;
+                    case "password":
+                        password=strArr[1];
+                        break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/db?serverTimezone=UTC",
-                    "root",
-                    "123456"
-            );
+            Class.forName(driverClass);
+            con=DriverManager.getConnection(url+"?serverTimezone=UTC", username, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
