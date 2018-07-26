@@ -5,18 +5,10 @@ import org.apache.commons.dbcp.BasicDataSource;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class JDBCUtils {
-    private static Connection con;
     private static BasicDataSource dataSource;
-    private static String driverClass;
-    private static String url;
-    private static String username;
-    private static String password;
 
     private JDBCUtils(){}
 
@@ -28,25 +20,13 @@ public class JDBCUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        driverClass=pro.getProperty("driverClass");
-        url=pro.getProperty("url");
-        username=pro.getProperty("username");
-        password=pro.getProperty("password");
 
         dataSource=new BasicDataSource();
-        dataSource.setDriverClassName(driverClass);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
+        dataSource.setDriverClassName(pro.getProperty("driverClass"));
+        dataSource.setUrl(pro.getProperty("url"));
+        dataSource.setUsername(pro.getProperty("username"));
+        dataSource.setPassword(pro.getProperty("password"));
 
-    }
-
-
-    /*
-    * getConnection方法返回Connection对象
-    * */
-    public static Connection getConnection(){
-        return con;
     }
 
     /*

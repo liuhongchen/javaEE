@@ -5,7 +5,7 @@ public class ZhangWu {
     private String flname; //分类名称
     private String zhangHu;//账户名称
     private double money;//金额
-    private String creattime; //创建时间
+    private String createtime; //创建时间
     private String description;//说明
 
     public int getZwid() {
@@ -40,12 +40,12 @@ public class ZhangWu {
         this.money = money;
     }
 
-    public String getCreattime() {
-        return creattime;
+    public String getCreatetime() {
+        return createtime;
     }
 
-    public void setCreattime(String creattime) {
-        this.creattime = creattime;
+    public void setCreatetime(String creattime) {
+        this.createtime = creattime;
     }
 
     public String getDescription() {
@@ -63,7 +63,7 @@ public class ZhangWu {
                 ", flname='" + flname + '\'' +
                 ", zhangHu='" + zhangHu + '\'' +
                 ", money=" + money +
-                ", creattime='" + creattime + '\'' +
+                ", creattime='" + createtime + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
