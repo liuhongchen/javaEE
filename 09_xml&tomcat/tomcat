@@ -1,0 +1,50 @@
+1.
+    ide：idea
+    服务器：tomcat
+    项目：web项目
+
+2.服务器
+    硬件服务器和软件服务器
+
+    web服务器：
+       提供资源供别人访问
+    资源：
+        动态的Web资源：内容有可能发生改变
+        静态的Web资源：内容是一成不变的（几乎看不到）
+     Web：网页的意思，资源
+    Web开发技术：
+        动态地Web开发技术：servlet jsp php .net
+        静态的Web开发技术：html css ...
+    javaWeb
+        通过java语言编写的网页称为javaWeb
+    Web的通信机制
+        基于请求响应机制。
+        一次请求一次响应，先有请求后有响应
+
+    常见的web服务器
+        服务器名称         厂商                特点
+        weblogic          Oracle          大型收费，支持javaEE所有规范
+        webspere           IBM             大型收费支持javaee所有规范
+        tomcat           apache组织          中小型免费支持servlet和jsp
+
+3.tomcat
+    目录结构（了解）
+        bin 可执行程序
+        conf 配置文件
+        lib 存放tomcat和项目运行时jar包
+        logs 日志
+        temp 临时文件
+        webapps 存放项目
+        work 存放jsp文件在运行时产生的java和class文件
+
+4.web项目的目录结构：
+    mywebapp（项目名称）    web 2.5版本标准的目录结构
+    |
+    |----html css js image等目录或者文件
+    |
+    |----WEB-INF（特点：通过浏览器直接访问不到目录）
+    |     |
+    |     |--- lib(项目的第三方jar包)
+    |     |--- classes（存放我们自定义的java文件生成的class文件）
+    |     |--- web.xml(当前项目的核心配置文件)
+    |
