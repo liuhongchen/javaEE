@@ -1,0 +1,33 @@
+1.servlet
+    动态的web开发技术，本质上就是一个类，运行在服务器端的java小程序
+    处理业务逻辑（代码），生成动态的web内容
+2.编写servlet的步骤
+    编写一个类
+        继承HttpServlet
+        重写doGet或者doPost方法
+    编写配置文件(WEB-INF/web.xml)
+        注册servlet
+            <!--注册servlet  使用servlet标签
+                servlet-name  给servlet起个名字
+                servlet-class 存servlet的全限定名-->
+        绑定路径（路径和类产生关联）
+            <!--绑定servlet  使用servlet-mapping标签
+            servlet-name  与servlet名字一样
+            url-pattern 访问路径要求 必须以 / 开头-->
+    访问
+        http://主机:端口号/项目名/路径
+3.接收参数 request
+    格式 key=value
+     String value=request.getParameter("name属性值")
+
+     如果路径是
+        http://localhost/day09/hello?username=tom
+        那么用request.getParameter("username")就可以获取值为tom
+        这个request就是doGet方法的参数 HttpServletRequest req
+
+4.回写内容 response
+    这个response就是doGet方法的参数 HttpServletResponse resp
+    response.getWriter().print();
+    但是中文会乱码（建议放在doGet方法的第一行）
+        resp.setContentType("text/html;charset=utf-8");
+

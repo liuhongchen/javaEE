@@ -1,0 +1,63 @@
+1.http
+    超文本传输协议：
+        规定数据格式
+    浏览器往服务器发送----请求
+    服务器往浏览器回写----响应
+
+2.请求
+    组成部分：
+        请求行：请求信息的第一行
+            格式： 请求方式   访问的资源       协议/版本
+                       GET/javaweb/index.html  HTTP/1.1
+            get请求没有请求体，请求参数放在url中；
+            post有请求体，请求参数会放在请求体中
+        请求头：请求信息的第二行到空行结束
+            格式： key/value（value可以是多个值）
+            常见的;
+                Accept: text/html,image/*		--支持数据类型  大数据/小数据 mime类型
+                Accept-Charset: ISO-8859-1	--字符集
+                Accept-Encoding: gzip		--支持压缩
+                Accept-Language:zh-cn 		--语言环境
+                Host: www.itcast.cn:80		--访问主机
+                If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT	  --缓存文件的最后修改时间
+                Referer: http://www.itcast.com/index.jsp	 --来自哪个页面、防盗链
+                User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)
+                Cookie
+                Connection: close/Keep-Alive   	--链接状态
+                Date: Tue, 11 Jul 2000 18:23:51 GMT	--时间
+
+        请求体：空行以下的内容
+            只有post才有请求体
+            格式：
+                username=t&password=123
+
+3.响应 response
+    服务器发送给服务器的东西
+    组成部分
+        响应行
+            格式： 协议/版本  状态码      状态码说明
+            状态码：
+                200 正常响应启动
+                302 重定向
+                304 读缓存
+                404 用户操作资源不存在
+                500 服务器内部异常（代码出问题了）
+        响应头
+            格式： key/value格式 （value有多个）
+            Location: http://www.it315.org/index.jsp 	--跳转方向
+            Server:apache tomcat			--服务器型号
+            Content-Encoding: gzip 			--数据压缩
+            Content-Length: 80 			--数据长度
+            Content-Language: zh-cn 		--语言环境
+            Content-Type: text/html; charset=GB2312 		--数据类型
+            Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT	--最后修改时间
+            Refresh: 1;url=http://www.it315.org		--定时刷新
+            Content-Disposition: attachment; filename=aaa.zip	--下载
+            Set-Cookie:SS=Q0=5Lb_nQ; path=/search
+            Expires: -1					--缓存
+            Cache-Control: no-cache  			--缓存
+            Pragma: no-cache   				--缓存
+            Connection: close/Keep-Alive   			--连接
+            Date: Tue, 11 Jul 2000 18:23:51 GMT
+        响应体
+          页面上展示的信息html啥的
