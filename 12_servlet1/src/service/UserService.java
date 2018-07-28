@@ -5,10 +5,11 @@ import dao.UserDao;
 import java.sql.SQLException;
 
 public class UserService {
-    private static UserDao userDao=new UserDao();
+    private  UserDao userDao=new UserDao();
 
-    public static int addUser(String username,String password) throws SQLException {
-        return userDao.addUser(username,password);
-
+    public  int addUser(String username,String password) throws SQLException {
+        int result=userDao.addUser(username,password);
+        System.out.println("Dao返回"+result);
+        return result;
     }
 }
