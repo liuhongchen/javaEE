@@ -1,0 +1,24 @@
+HttpServletRequest
+一、这个对象封装了客户端提交过来的一切数据
+二、方法
+    1.getHeader("name") 获取具体某个名字的头
+    2.getHeaderNames() 获取所有的头名字，枚举集合
+    3.getParameter("name") 获取到客户端提交上来的数据，例如username
+    4.getParameterMap() 然后用keySet方法获取所有键，然后遍历获取值
+三、获取中文数据
+    主要防乱码。
+    1.get方式
+        在url地址栏就已经编码了，我们取到的就是乱码，所以需要进行解码
+        tomcat默认使用ISO-8859-1去解码
+        所以解决方法是
+            username=new String(username.getBytes("ISO-8859-1"),"UTF-8");
+        或者，在tomcat里面配置，以后get请求过来的数据永远使用utf-8编码。
+            conf/server.xml
+                <Connector port="8080" protocol="HTTP/1.1"
+                           connectionTimeout="20000"
+                           redirectPort="8443"
+            			   URIEncoding="UTF-8"/> //加上最后一条属性
+    2.post方式
+        request.setCharacterEncoding("UTF-8");一定写在getParameter之前
+
+

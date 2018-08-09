@@ -1,0 +1,43 @@
+一、
+二、方法
+    1.getWriter()
+    2.getOutputStream().write("sdfsadf".getBytes());
+    3.getStatus()  write()方法里面可以写html标签
+    4.setHeader(name,value); Location+url与setStatus（302）配合可以跳转页面
+    5.setStatus(value) 设置当前请求的处理状态码
+    6.setContentType(type) 设置响应内容的类型以及编码
+
+三、响应数据中包含中文
+    主要是乱码问题
+        setContentType("text/html;charset=utf-8");
+四、下载
+    1.让tomcat的默认servlet提供下载
+        DefaultServlet专门用于处理放在tomcat服务器上的静态资源
+        <a href="download/aa.jpg">aa.jpg</a>
+        <a href="download/bb.txt">bb.txt</a>
+        <a href="download/cc.rar">cc.rar</a>
+        <a href="download/黑马.png">黑马.png</a>
+
+    2.创建index.html和servlet
+        在index.html写
+            <a href="Demo02?filename=aa.jpg">aa.jpg</a>
+            <a href="Demo02?filename=bb.txt">bb.txt</a>
+            <a href="Demo02?filename=cc.rar">cc.rar</a>
+        在servlet中写
+            //获取要下载的文件名字
+            String fileName=request.getParameter("filename");
+            //获取这个文件的正确路径并转换成输入流
+            response.setHeader("Content-Disposition",
+                    "attachment;filename="+fileName);
+            ServletContext context=getServletContext();
+            InputStream is=context.getResourceAsStream("download/"+fileName);
+
+            //回写
+            OutputStream os=response.getOutputStream();
+            int len=0;
+            byte[] buffer=new byte[1024];
+            while((len=is.read(buffer))!=-1){
+                os.write(buffer,0,len);
+            }
+            os.close();
+            is.close();

@@ -16,6 +16,8 @@
       <module fileurl="file://$PROJECT_DIR$/12_servlet1/12_servlet1.iml" filepath="$PROJECT_DIR$/12_servlet1/12_servlet1.iml" />
       <module fileurl="file://$PROJECT_DIR$/13_servlet2/13_servlet2.iml" filepath="$PROJECT_DIR$/13_servlet2/13_servlet2.iml" />
       <module fileurl="file://$PROJECT_DIR$/14_Servlet_save&amp;get/14_Servlet_save&amp;get.iml" filepath="$PROJECT_DIR$/14_Servlet_save&amp;get/14_Servlet_save&amp;get.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15_HttpServletRequest/15_HttpServletRequest.iml" filepath="$PROJECT_DIR$/15_HttpServletRequest/15_HttpServletRequest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/16_HttpServletResponse/16_HttpServletResponse.iml" filepath="$PROJECT_DIR$/16_HttpServletResponse/16_HttpServletResponse.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaEE.iml" filepath="$PROJECT_DIR$/javaEE.iml" />
     </modules>
   </component>
