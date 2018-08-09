@@ -13,8 +13,4 @@ public class UserDao {
         return queryRunner.update(DBUtils.getDataSource().getConnection(),
                 sql,null,username,password);
     }
-
-
-
-
 }

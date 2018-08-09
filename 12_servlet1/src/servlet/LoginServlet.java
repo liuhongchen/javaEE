@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import service.UserService;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class UserController extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,6 +19,5 @@ public class UserController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

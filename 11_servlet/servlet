@@ -1,6 +1,8 @@
 1.servlet
     动态的web开发技术，本质上就是一个类，运行在服务器端的java小程序
     处理业务逻辑（代码），生成动态的web内容
+    用于接收和响应客户端的http请求
+    当然，静态资源也需要用到servlet，不过是tomcat里面已经定义了一个DefaultServlet
 2.编写servlet的步骤
     编写一个类
         继承HttpServlet
@@ -14,6 +16,9 @@
             <!--绑定servlet  使用servlet-mapping标签
             servlet-name  与servlet名字一样
             url-pattern 访问路径要求 必须以 / 开头-->
+            这里的路径可以用通配符  /*，路径输入啥都行
+            例如 a/*,则访问的时候a/asadf/asdf，a/23r都可以访问
+            或者以扩展名匹配  写法 *.class
     访问
         http://主机:端口号/项目名/路径
 3.接收参数 request
@@ -31,3 +36,122 @@
     但是中文会乱码（建议放在doGet方法的第一行）
         resp.setContentType("text/html;charset=utf-8");
 
+
+5.servlet生命周期
+    生命周期方法：从创建到销毁，所调用的那些方法
+        构造servlet，然后使用init方法将其初始化（开启服务器后的初次访问会执行）
+        处理来自客户端对service方法的所有调用 （每次请求都调用）
+        从服务器取出servlet，然后用destroy方法销毁他，最后进行垃圾回收并终止（该项目从服务器移除
+            或用tomcat的shutdown方法)
+
+    初始化提前 load-on-startup
+        在servlet标签中添加<load-on-startup>数字越小越先执行</load-on-startup>
+        如果数字相同，由tomcat自己选择，一般写正数，从2开始即可。
+        因为1由default servlet占用了
+
+6.ServletConfig
+    servlet的配置，通过这个对象，可以获取servlet在配置的时候的一些信息
+
+    ①获取对象
+        ServletConfig servletConfig=getServletConfig();
+    ②方法
+        getServletName() 得到的是web.xml文件中的对应servlet-name标签中的内容
+
+        servlet标签下可以添加参数
+            <init-param>
+                <param-name>address</param-name>
+                <param-value>beijing</param>
+            </init-param>
+        然后可以用getInitParameter("param-name")就可以获取param-value的值
+
+        getInitParameterNames()拿到所有param-name，返回String的枚举
+        遍历的话，
+            while(枚举.hasMoreElements()){
+            String name=(String)枚举.nextElement();
+            }
+
+    作用：未来我们自己开发一些应用，使用到了一些技术或者一些代码，我们不回，但是有人写出
+    来了，她的代码放置在了自己的servlet类里面。
+
+    刚好这个servlet里面需要添加一个数字或者叫做变量值，但是这个值不能是固定的。
+
+    所以要求使用到这个servlet的公司，在注册servlet的时候，必须要在web.xml里面
+    声明init-params
+
+7.servletContext
+    Servlet上下文
+    一个javaWeb项目每台java虚拟机仅有一个servletContext
+
+    获取方法： getServletContext() 不管在哪个类中获取，得到的都是同一个对象
+
+    常用方法：
+
+
+    ①String getInitParameter("name")
+            拿到的是全局参数，是直接在web-app下声明的<init-param>是全局变量,
+            而servletConfig获取的是每个servlet的<context-param>(写法同init param)是局部变量
+
+
+    ②获取web应用中的资源
+        创建属性对象
+            Properties properties=new Properties();
+        指定载入的数据源
+            这里不能用new InputStream，这个会找不到相应的路径
+            真正的相对路径是tomcat里面的bin目录
+            InputStream is=new FileInputStream(context.getRealPath(""));
+            //这种资源必须放在web文件夹下
+            
+            或者InputStream is=getResourceAsStream("path");
+            properties.load(is);
+        获取属性值
+            properties.getProperty("");
+
+        方法1：从工程目录开始
+             Properties properties=new Properties();
+             InputStream is=ServletContextDemo.class.getClassLoader()
+                        .getResourceAsStream("pro.properties");
+             properties.load(is);
+        方法2：获取web目录下
+             ServletContext servletContext=getServletContext();
+             String path=servletContext.getRealPath("pro.properties");
+             InputStream is=new FileInputStream(path);
+             Properties pro=new Properties();
+             pro.load(is);
+        方法3：获取web目录下
+             ServletContext servletContext=getServletContext();
+             Properties properties=new Properties();
+             InputStream is=servletContext.getResourceAsStream("pro.properties");
+             properties.load(is);
+
+    🌂.存取数据
+        ServletContext servletContext = getServletContext();
+        Object obj = servletContext.getAttribute("count");
+        int totalCount = 0;
+        if (obj != null) {
+              totalCount = (int) obj;
+        }
+        servletContext.setAttribute("count", totalCount + 1);
+
+        action里面写的是url-pattern或者http://sdfsfasfdsadcfvs
+        获取数据
+            request.getParameter("name");这个name是表单里面内容的name
+        回写数据
+            response.getWriter().write("asfsdafdf");
+            resp.setContentType("text/html;charset=utf-8");//防止乱码
+        跳转页面
+            response.setStatus(302);//重新定位状态码 ，就是302
+            response.setHeader("Location",url或相对路径);
+
+            response.setStatus(302);//重新定位状态码
+            response.setHeader("Location","http://localhost:8080/success.html");
+
+        如果想点击超链接然后进行请求的话，直接在超链接写servlet的路径或者写url
+
+
+
+        servletContext何时创建？何时销毁?
+        服务器启动的时候，会为托管的每一个web应用程序，创建一个ServletContext对象。
+        从服务器移除托管或关闭服务器就会被销毁
+
+        ServletContext的作用范围
+        只要在这个项目里面，都可以

@@ -28,4 +28,13 @@
         <servlet-name>RequestServlet</servlet-name>
         <url-pattern>/request</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>c_HelloServlet</servlet-name>
+        <servlet-class>c_hello.HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>c_HelloServlet</servlet-name>
+        <url-pattern>/c_hello</url-pattern>
+    </servlet-mapping>
 </web-app>
