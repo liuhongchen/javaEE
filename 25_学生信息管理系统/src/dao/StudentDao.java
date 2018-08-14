@@ -15,7 +15,7 @@ public class StudentDao {
     public List<Student> getAllStudents() throws SQLException {
         QueryRunner queryRunner=new QueryRunner();
         Connection con=JDBCUtils.getConnection();
-        String sql="select * from students";
+        String sql="select * from student";
         List<Student> list=queryRunner.query(con,sql,new BeanListHandler<Student>(Student.class));
         return list;
     }

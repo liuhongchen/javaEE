@@ -1,0 +1,13 @@
+一、JSP的开发模式
+    1.javaBean（一种数据封装）+JSP    （早期）
+        在jsp里面直接写java代码，维护起来比较困难，并且jsp页面的代码会变得臃肿
+    2.Servlet+javaBean+JSP  （MVC模式)
+        M：model 模型层 java 封装处理数据JavaBean  EJB
+        V：view 视图层 JSP 只专注于显示
+        C：Controller 控制层  Servlet接收页面请求，找模型去处理，然后响应数据
+        对于大型项目：分层，逻辑清楚，便于维护、扩展项目
+        对于小型项目：严格遵守MVC可能会很麻烦
+
+        web层（servlet/jsp）属于Controller和View
+        业务逻辑层(EJB 会话bean javaBean）和数据访问层（Dao）属于model
+

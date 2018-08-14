@@ -1,0 +1,48 @@
+一、分类
+    DBCP
+    C3P0
+
+二、DBCP
+
+    如果不使用配置文件
+    1.构建数据源对象
+        BasicDataSource dataSource=new BasicDataSource();
+    2.设置数据源属性
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db?serverTimezone=UTC");
+        dataSource.setUsername("root");
+        dataSource.setPassword("123456");
+    3.得到连接对象
+        Connection con=dataSource.getConnection();
+
+    使用配置文件：
+        BasicDataSourceFactory factory = new BasicDataSourceFactory();
+        Properties properties = new Properties();
+        InputStream is = new FileInputStream("src//dbcpconfig.properties");
+        properties.load(is);
+        DataSource dataSource = factory.createDataSource(properties);
+
+三、C3P0
+    不使用配置文件
+    //1. 创建datasource
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+	//2. 设置连接数据的信息
+		dataSource.setDriverClass("com.mysql.jdbc.Driver");
+		dataSource.setJdbcUrl("jdbc:mysql://localhost/bank");
+		dataSource.setUser("root");
+		dataSource.setPassword("root");
+	//3. 得到连接对象
+		conn = dataSource.getConnection();
+
+	使用配置文件
+	    //默认会找 xml 中的 default-config 分支。 不需要手动关联
+			ComboPooledDataSource dataSource = new ComboPooledDataSource();
+			//2. 设置连接数据的信息
+			dataSource.setDriverClass("com.mysql.jdbc.Driver");
+			//忘记了---> 去以前的代码 ---> jdbc的文档
+			dataSource.setJdbcUrl("jdbc:mysql://localhost/bank");
+			dataSource.setUser("root");
+			dataSource.setPassword("root");
+
+			//2. 得到连接对象
+			conn = dataSource.getConnection();

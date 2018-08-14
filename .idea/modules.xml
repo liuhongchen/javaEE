@@ -26,6 +26,9 @@
       <module fileurl="file://$PROJECT_DIR$/23_EL表达式/23_EL表达式.iml" filepath="$PROJECT_DIR$/23_EL表达式/23_EL表达式.iml" />
       <module fileurl="file://$PROJECT_DIR$/24_JSTL/24_JSTL.iml" filepath="$PROJECT_DIR$/24_JSTL/24_JSTL.iml" />
       <module fileurl="file://$PROJECT_DIR$/25_学生信息管理系统/25_学生信息管理系统.iml" filepath="$PROJECT_DIR$/25_学生信息管理系统/25_学生信息管理系统.iml" />
+      <module fileurl="file://$PROJECT_DIR$/26_连接池/26_连接池.iml" filepath="$PROJECT_DIR$/26_连接池/26_连接池.iml" />
+      <module fileurl="file://$PROJECT_DIR$/27_MVC设计模式/27_MVC设计模式.iml" filepath="$PROJECT_DIR$/27_MVC设计模式/27_MVC设计模式.iml" />
+      <module fileurl="file://$PROJECT_DIR$/28_学生管理系统/28_学生管理系统.iml" filepath="$PROJECT_DIR$/28_学生管理系统/28_学生管理系统.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaEE.iml" filepath="$PROJECT_DIR$/javaEE.iml" />
     </modules>
   </component>
