@@ -1,0 +1,59 @@
+一、jsp：java server page。用户角度来看就是一个网页；从程序员角度来看，其实是一个java类，继承了servlet
+二、为什么有jsp？
+    html多数情况下用来显示静态内容，一成不变。但是有时候我们需要在网页上现实一些动态数据。
+    比如：查询所有的学生信息，根据姓名去查询具体某个学生。这些动作都需要去查询数据库，然后再
+    在网页上显示。html是不支持写java 代码的，jsp里面可以写java代码。
+    为了更好的交互体验，用户效果。
+三、怎么使用JSP
+        <%@ 指令名称 %>
+    1.page指令
+        <%@ page language="java" %>
+        language="java"意味着可以写java代码
+        contentType="text/html;charset=utf-8"  告诉浏览器文件是什么类型，以及编码
+            text/html MIMEType 这是一个文本，html网页。可以是video/mp4等等类型
+        pageEncoding 表示的是jsp的内容编码
+        extends 用于指定jsp文件翻译成java文件后继承的父类是谁，一般不用改
+        import 导包，一般不用手写
+        autoflush自动刷新
+        session true或false 用于控制在这个jsp页面能否直接使用session对象，不用管
+        errorPage=""  如果页面有错，将呈现引号里面的内容
+        如果在errorPage对应的页面 的page指令里面写isErrorPage="true",则就可以在该页面显示错误原因啥的
+
+    2.include指令
+        包含另外一个jsp的内容进来
+        <%@ include file="path/url" %>
+        静态包含。直接把另一个jsp文件的源码拿过来，完整粘贴到本文件内容的后面然后一起输出
+
+    3.taglib指令
+        prefix 标签库别名
+        uri 标签库路径
+
+    4.动作标签
+        <jsp:include page=""></jsp:include>
+            动态包含。不把源码拿过来，而是把运行结果拿过来
+        <jsp:forward page=""></jsp:forward>
+            跳转到哪个页面。等同于请求转发
+                request.getRequestDispatcher("other.jsp").forward(request,response);
+        <jsp:param value="" name=""/>
+            在包含这个页面或者跳转到某个页面的时候加入这个参数,其实相当于在url中添加
+            <jsp:forward page="">
+                <jsp:param value="" name=""/>
+            </jsp:forward>
+
+
+四、内置对象
+
+    写在<%@ %>中
+    直接可以在jsp页面中使用的对象，不用创建
+    前四个称为作用域对象
+    作用域：对象可以存值，存取范围有限定setAttribute，getAttribute
+    1.pageContext 值只能在当前页面使用 pageContext类型。可以拿到其他八个对象
+    2.request 仅用于第一次请求，如果服务器做出了响应，再有下一次请求，则不会响应 httpServlet
+    3.session 限于一次对话（多次请求与响应）HttpSession
+    4.application 整个工程都可以访问。服务器关闭就不可以访问。是servletContext类型的
+    5.exception 只有在isErrorPage才能找到  Throwable类型
+    6.out  JspWriter。输出的内容要放到response里面缓冲区输出，即先输出response内容，再输出
+        out的内容
+    7.page  Object类型，当前类的实例对象
+    8.config   ServletConfig类型
+    9.response HttpServletResponse

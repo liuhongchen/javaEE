@@ -1,0 +1,22 @@
+一、JSTL：jsp standard tag library。 jsp标准标签库
+    简化jsp代码编写。替换<% %>写法，一般与EL表达式结合使用
+
+二、使用：
+        导入JSTL支持jar文件 jstl.java和standard.jar
+        在页面上使用taglib来引入标签库
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        然后直接通过别名来调用里面的东西
+
+三、基本用法：
+    1.<c:set var="" value="" scope=""></c:set>
+        var实际上就是name属性，value是值
+        scope是指定存到哪里例如page request session application默认page
+    2.<c:if test="EL表达式" var="" scope="">要输出的内容</c:if>
+        例如 test="${age>16}"，如果age满足{}里面的条件，就会输出标签体
+        没有else，所以可以另写一组标签
+        var可以定义一个变量名，用来存储test的结果，scope指定存到哪
+    3.<c:forEach begin="" end="" var="" step="" item="" ></c:forEach> 用作遍历
+         begin从几开始，end从几结束
+         var 定义变量 应该就是for中的int i或增强for里定义的变量名
+         step 增幅
+         items 要遍历的东西，用EL表达式把要遍历的东西取出来

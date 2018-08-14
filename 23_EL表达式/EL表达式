@@ -1,0 +1,28 @@
+一、为了简化jsp代码，为了简化再jsp里面写的java代码
+    ${ 表达式 }
+    取值（要想取值先存值）
+        ${pageScope.属性名} 在页面内容找
+        ${requestScope.属性名} request内找
+        ${sessionScope.属性名} session内找
+        ${applicationScope.属性名} application找
+        ${属性名} 先从page找，再往上找
+        ${数组名[索引]}
+        ${map集合名.name}
+        ${map集合名["address.aa"]  这种带点的
+
+
+二、隐式对象
+    1.pageContext 实例对应于当前页面的处理
+    2.pageScope 与页面作用域属性的名称和值相关联的Map类
+    3.requestScope 与请求作用域属性的名称和值相关联的Map类
+    4.sessionScope 与绘画作用域属性的名称和值相关联的Map类
+    5.applicationScope 与应用程序作用域属性的名称和值相关联的Map类
+    6.param 按名称存储请求参数的主要值的Map类
+    7.paramValues 将请求参数的所有值作为String数组存储的Map类
+    8.header 按名称存储请求头主要值的Map类
+    9.headerValues 将请求头的所有值作为String数组存储的Map类
+    10.cookie 按名称存储请求附带的cookie的Map类
+    11.initParam 按名称存储Web应用程序上下文初始化参数的Map类
+
+
+三、

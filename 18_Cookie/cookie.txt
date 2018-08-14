@@ -1,0 +1,17 @@
+一、一份小数据，是服务器给客户端，并且存储在客户端的一份小数据
+二、简单使用
+    Cookie 可以返回多个，在浏览器有多条setCookie
+    1.new Cookie(String name,String value) 创建Cookie
+    2.response.addCookie(Cookie cookie) 给响应添加一个cookie,在响应头里面就多了一个字段
+        叫Set-Cookie，后面跟的是name=value
+    3.获取客户端带过来的cookie
+        Cookie[] cookies=request.getCookies();
+        如果没有，返回null
+        然后cookie的话，有getName()和getValue()的方法
+    4.Cookie的有效期。
+        默认情况下关闭浏览器后Cookie就没有了。针对没有设置Cookie的有效期。
+        cookie.setMaxAge(expiry有效)
+            返回以秒为单位指定的cookie最大生存时间，默认情况下-1指浏览器关闭
+    5.cookie.setValue()重新指定值
+    6.cookie.setDomain("域名")用于指定只有请求了指定的域名才能带上cookie
+    7.cookie.setPath("url") 只有访问该地址才会带cookie

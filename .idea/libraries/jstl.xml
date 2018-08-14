@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jstl">
+    <CLASSES>
+      <root url="jar://E:/下载/355 已分享 新建文件夹(2)/04-JavaWeb知识(学习12天)/day05-JSP&amp;EL&amp;JSTL/day05-JSP&amp;EL&amp;JSTL/day13/code&amp;资料/资料/jstl/jakarta-taglibs-standard-1.1.2/jakarta-taglibs-standard-1.1.2/lib/jstl.jar!/" />
+      <root url="jar://E:/下载/355 已分享 新建文件夹(2)/04-JavaWeb知识(学习12天)/day05-JSP&amp;EL&amp;JSTL/day05-JSP&amp;EL&amp;JSTL/day13/code&amp;资料/资料/jstl/jakarta-taglibs-standard-1.1.2/jakarta-taglibs-standard-1.1.2/lib/standard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

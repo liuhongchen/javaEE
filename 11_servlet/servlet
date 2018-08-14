@@ -139,6 +139,14 @@
             response.getWriter().write("asfsdafdf");
             resp.setContentType("text/html;charset=utf-8");//防止乱码
         跳转页面
+            简写：（重定向）
+            response.sendRedirect("url");
+            或者：（请求转发）
+            request.getRequestDispatcher("url").forward(request,response);
+
+            重定向和请求转发的区别：
+                url地址呈现不同：重定向显示最后的资源地址，请求转发显示请求servlet地址
+
             response.setStatus(302);//重新定位状态码 ，就是302
             response.setHeader("Location",url或相对路径);
 
