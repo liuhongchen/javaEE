@@ -1,0 +1,155 @@
+一、IOC 控制反转
+    将对象的创建权交给Spring
+
+二、jar
+    	docs		：Spring的开发规范和API
+    	libs		：Spring的开发的jar和源码
+    	schema	：Spring的配置文件的约束
+
+三、IOC使用
+    工厂类+反射+配置文件
+
+    在applicationContext.xml中
+        <bean id="userService" class="spring.demo01.UserServiceImpl"/
+        一般id是接口名，然后class是具体的实现类，需要不同的实现类就只改class就行了，因为代码里写的是id（不需要改）
+
+    在单元测试类中
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService userService= (UserService) applicationContext.getBean("userService");
+
+四、DI  依赖注入
+    在IOC的前提下，把bean里面类依赖的属性设置（注入）进来
+    例如 一个类，一个属性
+    <bean>
+        <property name="" value="" />
+    </bean>
+
+
+    类之间的关系
+        依赖：
+            在B类中使用到了A类
+        继承 is a
+        聚合：has a
+
+
+五、Spring工厂类
+    BeanFactory 老版本 在调用getBean的时候才创建实例
+    ApplicationContext 新版本 继承了BeanFactory ，在加载配置文件的时候就把管理的所有bean实例化
+
+六、ApplicationContext
+    1.两个实现类
+        ClassPathXmlApplicationContext	：加载类路径下的配置文件
+        FileSystemXmlApplicationContext ：加载文件系统下的配置文件
+
+七、Bean的配置
+    <bean>标签的id和name的配置
+        	id		:使用了约束中的唯一约束。里面不能出现特殊字符的。
+        	name	:没有使用约束中的唯一约束（理论上可以出现重复的，但是实际开发不能出现的）。里面可以出现特殊字符。
+            	Spring和Struts1框架整合的时候
+            	<bean name=”/user” class=””/>
+
+    生命周期配置
+        	init-method=""		:Bean被初始化的时候执行的方法
+        	destroy-method=""	:Bean被销毁的时候执行的方法（Bean是单例创建，工厂关闭）
+        这俩方法需要在class对应的类里面声明方法
+
+    作用范围
+    	scope			：Bean的作用范围
+        	singleton		：默认的，Spring会采用单例模式创建这个对象。    主要
+            单例模式，同一个类，无论有多少条创建对象的语句都只执行一次
+        	prototype	：多例模式。（Struts2和Spring整合一定会用到）  主要
+            多例模式，同一个类的所有对象地址都不一样
+        	request		：应用在web项目中，Spring创建这个类以后，将这个类存入到request范围中。
+        	session		：应用在web项目中，Spring创建这个类以后，将这个类存入到session范围中。
+        	globalsession	：应用在web项目中，必须在porlet环境下使用。但是如果没有这种环境，相对于session。
+
+八、基本属性（除数组、集合）注入
+
+    value用来设置基本类型的值
+    ref用来设置引用类型，设置其他类的id或name
+    1.构造方法属性注入
+        <bean id="carcarcar">
+            <constructor-arg name="name" value="宝马"/>
+            <constructor-arg name="price" value="1000"/>
+        </bean>
+        <bean>
+            <constructor-arg name="name" value="张三"/>
+            <constructor-arg name="car" ref="carcarcar"/>
+        </bean>
+    2.set方法属性注入（得有set方法）
+        <bean id="carcarcar">
+            <property name="name" value="宝马"/>
+            <property name="price" value="1000"/>
+        </bean>
+
+        <bean>
+            <property name="name" value="张三"/>
+            <property name="car" ref="carcarcar"/>
+        </bean>
+    3. p名称空间注入
+        	通过引入p名称空间完成属性的注入：
+            	写法：
+            	普通属性	p:属性名=”值”
+            	对象属性	p:属性名-ref=”值”
+        	P名称空间的引入
+           xmlns:p="http://www.springframework.org/schema/p"
+
+    4.SPEL注入
+        	SpEL：Spring Expression Language，Spring的表达式语言。
+            	语法：
+                	#{SpEL}
+         value = "#{普通变量}"
+         value = "#{id或name}"
+         value = "#{id或name .属性}"
+         value = "#{id或name .方法}"
+
+
+九、复杂类型（数组、集合）注入
+    	<!-- Spring的集合属性的注入============================ -->
+    	<!-- 注入数组类型 -->
+    	<bean id="collectionBean" class="com.itheima.spring.demo5.CollectionBean">
+    		<!-- 数组类型 -->
+    		<property name="arrs">
+    			<list>
+    				<value>王东</value>
+    				<value>赵洪</value>
+    				<value>李冠希</value>
+    			</list>
+    		</property>
+
+    		<!-- 注入list集合 -->
+    		<property name="list">
+    			<list>
+    				<value>李兵</value>
+    				<value>赵如何</value>
+    				<value>邓凤</value>
+    			</list>
+    		</property>
+
+    		<!-- 注入set集合 -->
+    		<property name="set">
+    			<set>
+    				<value>aaa</value>
+    				<value>bbb</value>
+    				<value>ccc</value>
+    			</set>
+    		</property>
+
+    		<!-- 注入Map集合 -->
+    		<property name="map">
+    			<map>
+    				<entry key="aaa" value="111"/>
+    				<entry key="bbb" value="222"/>
+    				<entry key="ccc" value="333"/>
+    			</map>
+    		</property>
+    	</bean>
+十、分模块配置
+    在加载配置文件的时候，加载多个
+        ClassPathXml...(文件1，文件2)
+    在一个配置文件中引入多个配置文件
+    <import resource="另外一个applicationContext.xml">
+
+
+

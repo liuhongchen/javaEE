@@ -1,0 +1,53 @@
+一、使用方法
+    1.在applicationContext.xml中配置组件扫描
+         <context:component-scan base-package="要被扫描的包1,要被扫描的包2"/>
+
+    2.在类上添加注解
+        在实现类声明上面写
+            @Component("id或name") 相当于bean id=或name= class=
+
+二、设置属性的值
+    1.如果使用注解方式，可以没有set方法
+        如果有set方法，需要把注解添加到set方法上面
+        如果没有set方法，需要把注解添加到属性上面
+        @Value("具体的值")
+
+三、注解详解
+    1.@Component("name/id") 组件
+        修饰一个类，将这个类交给Spring去管理（前提是配置好组件扫描）
+        这个注解有三个衍生注解（功能类似）,为了使分层结构更明显，建议使用
+            @Controller ：修饰web层
+            @Service    ：修饰Service层
+            @Repository ：修饰Dao层
+
+    2.属性注入的注解
+        普通属性 @Value("值")
+        对象类型
+            @Autowired 下面需要什么类型就给什么类型
+                如果想指定某个类的话，就与@qualifier(value="id/name")搭配使用
+            @Resource(name="") 按照id或name来完成注入
+
+    3.生命周期注解
+        初始化注解：@PostConstruct
+        销毁注解：@preDestroy   需要把工厂.close();
+
+    4.作用范围
+             @scope("")
+                	singleton		：默认的，Spring会采用单例模式创建这个对象。    主要
+                    单例模式，同一个类，无论有多少条创建对象的语句都只执行一次
+                	prototype	：多例模式。（Struts2和Spring整合一定会用到）  主要
+                    多例模式，同一个类的所有对象地址都不一样
+                	request		：应用在web项目中，Spring创建这个类以后，将这个类存入到request范围中。
+                	session		：应用在web项目中，Spring创建这个类以后，将这个类存入到session范围中。
+                	globalsession	：应用在web项目中，必须在porlet环境下使用。但是如果没有这种环境，相对于session。
+
+四、XML和注解比较
+    XML：
+        可以适用于任何场景
+        结构清晰，后期维护方便
+    注解：
+        有些地方用不了，例如这个类不是自己提供的
+        开发方便
+
+五、XML和注解整合开发
+    XML管理bean，注解完成属性注入

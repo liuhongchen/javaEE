@@ -29,6 +29,13 @@
       <module fileurl="file://$PROJECT_DIR$/26_连接池/26_连接池.iml" filepath="$PROJECT_DIR$/26_连接池/26_连接池.iml" />
       <module fileurl="file://$PROJECT_DIR$/27_MVC设计模式/27_MVC设计模式.iml" filepath="$PROJECT_DIR$/27_MVC设计模式/27_MVC设计模式.iml" />
       <module fileurl="file://$PROJECT_DIR$/28_学生管理系统/28_学生管理系统.iml" filepath="$PROJECT_DIR$/28_学生管理系统/28_学生管理系统.iml" />
+      <module fileurl="file://$PROJECT_DIR$/29_Ajax/29_Ajax.iml" filepath="$PROJECT_DIR$/29_Ajax/29_Ajax.iml" />
+      <module fileurl="file://$PROJECT_DIR$/30_Ajax校验用户名是否可用/30_Ajax校验用户名是否可用.iml" filepath="$PROJECT_DIR$/30_Ajax校验用户名是否可用/30_Ajax校验用户名是否可用.iml" />
+      <module fileurl="file://$PROJECT_DIR$/31_JQueryAjax/31_JQueryAjax.iml" filepath="$PROJECT_DIR$/31_JQueryAjax/31_JQueryAjax.iml" />
+      <module fileurl="file://$PROJECT_DIR$/32_Spring/32_Spring.iml" filepath="$PROJECT_DIR$/32_Spring/32_Spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/33_SpringDemo01/33_SpringDemo01.iml" filepath="$PROJECT_DIR$/33_SpringDemo01/33_SpringDemo01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/34_SpringIOC注解开发/34_SpringIOC注解开发.iml" filepath="$PROJECT_DIR$/34_SpringIOC注解开发/34_SpringIOC注解开发.iml" />
+      <module fileurl="file://$PROJECT_DIR$/35_AOP/35_AOP.iml" filepath="$PROJECT_DIR$/35_AOP/35_AOP.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaEE.iml" filepath="$PROJECT_DIR$/javaEE.iml" />
     </modules>
   </component>
