@@ -15,6 +15,14 @@
         <servlet-name>ServletQuery</servlet-name>
         <servlet-class>servlet.ServletQuery</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletDelete</servlet-name>
+        <servlet-class>servlet.ServletDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletUpdate</servlet-name>
+        <servlet-class>servlet.ServletUpdate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -26,5 +34,13 @@
     <servlet-mapping>
         <servlet-name>ServletQuery</servlet-name>
         <url-pattern>/query</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletDelete</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUpdate</servlet-name>
+        <url-pattern>/update</url-pattern>
     </servlet-mapping>
 </web-app>

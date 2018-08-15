@@ -52,4 +52,12 @@ public class StudentDao {
         return list;
     }
 
+    //delete
+    public int delete(int id) throws SQLException {
+        QueryRunner queryRunner=new QueryRunner();
+        Connection con=JDBCUtils.getConnection();
+        String sql="delete from student where id=?";
+        return queryRunner.update(con,sql,id);
+    }
+
 }

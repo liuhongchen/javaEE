@@ -30,7 +30,7 @@ public class ServletLogin extends HttpServlet {
         if(result==0){
             response.getWriter().write("账户或密码错误，登录失败！");
         }else {
-            response.sendRedirect("http://localhost:8080/main.jsp");
+            response.sendRedirect("http://192.168.8.135:8080/main.jsp");
         }
     }
 }

@@ -39,6 +39,13 @@
             <td align="center">简介</td>
             <td align="center">操作</td>
         </tr>
+
+        <%
+            int id=0;
+            request.getSession().setAttribute("id",id);
+
+        %>
+
         <c:forEach var="stu" items="${sessionScope.list}">
             <tr align="center">
                 <td>${stu.getId()}</td>
@@ -48,10 +55,27 @@
                 <td>${stu.getBirthday()}</td>
                 <td>${stu.getHobby()}</td>
                 <td>${stu.getInfo()}</td>
-                <td><a href="#">更新</a> <a href="#">删除</a> </td>
+                <td><a href="#" onclick="doUpdate(${stu.getId()})">更新</a> <a href="#" onclick="doDelete(${stu.getId()})">删除</a> </td>
             </tr>
         </c:forEach>
     </table>
 </form>
 </body>
+<script>
+    function doDelete(id) {
+        /* 如果这里弹出的对话框，用户点击的是确定，就马上去请求Servlet。
+        如何知道用户点击的是确定。
+        如何在js的方法中请求servlet。 */
+        var flag = confirm("是否确定删除?");
+        if(flag){
+            //表明点了确定。 访问servlet。 在当前标签页上打开 超链接，
+            //window.location.href="ServletDelete?id="+id;
+            location.href="delete?id="+id;
+        }
+    }
+
+    function doUpdate(id) {
+        location.href="update.jsp?id="+id;
+    }
+</script>
 </html>

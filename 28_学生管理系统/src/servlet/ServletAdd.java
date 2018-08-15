@@ -46,6 +46,6 @@ public class ServletAdd extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("http://localhost:8080/main.jsp");
+        response.sendRedirect("http://192.168.8.135:8080/main.jsp");
     }
 }

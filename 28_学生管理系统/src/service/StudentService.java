@@ -31,4 +31,9 @@ public class StudentService {
         }
         return list;
     }
+
+    //delete
+    public int delete(int id) throws SQLException {
+        return dao.delete(id);
+    }
 }
