@@ -1,0 +1,193 @@
+一、开源的项目自动化构建工具，建立在Apache Ant和Maven概念的基础上，并引入了基于Groovy特定领域语言
+DSL，而不再使用xml形式管理构建脚本
+二、Groovy
+    1.基于java虚拟机的一种敏捷的动态语言，它是一种成熟的面向对象编程语言，既可以用于面向对象编程，
+    又可以作为纯粹的脚本语言。使用该种语言不需要写过多代码，同时又具有闭包和动态语言中的其他特性。
+        完全兼容java代码
+        分号可选
+        类、方法默认都是public
+        编译器自动添加getter/setter方法
+        属性可以直接使用点号获取
+        最后一个表达式的值作为返回值
+        ==等同于equals(),不回有NullPointerExceptions
+
+        高效特性：
+            assert语句
+            可选类型定义（弱类型）    def 变量名
+            可选的括号
+            字符串
+                单引号 仅仅是字符串
+                双引号 可以使用${变量名}插入变量
+                三引号 可以换行
+            集合API，有更简单的写法
+                list
+                    def buildTools=['a','b']
+                    buildTools << 'gradle'
+                map
+                    def buildMap=['ant':2000,'maven':2003]
+                    buildMap.gradle=2342  //这是添加
+                    访问
+                        buildMap,ant
+                        buildMap['gradle']
+            闭包
+
+三、gradle构建脚本
+
+// 构建脚本中默认都是有个Project实例的，
+        该实例有apply、version、repositories、dependencies方法
+    apply plugin:'java'
+
+    version='0.1'
+
+    repositories{
+        mavenCentral()
+    }
+
+    dependencies{
+        compile 'commons-codec:commoms-codec:1.6'
+    }
+
+四、gradle的使用
+    1.导出jar包
+        在右边的gradle 项目名-Tasks-build下
+        双击jar或build即可
+        然后jar包在该项目的文件目录的build-libs下
+
+    2.导出web工程
+        在build.gradle里面添加 apply plugin:'war'
+
+五、构建脚本
+    1.构建快
+        Gradle构建中的两个基本概念是项目和任务，每个构建至少包含一个项目。
+        项目中包含一个或多个任务。在多项目构建中，一个项目可以依赖于其他项目。
+        类似的，任务可以形成一个依赖关系图来确保他们的执行顺序
+    2.项目
+        一个项目代表一个正在构建的组件（比如一个jar文件），当构建启动之后，Gradle
+        会基于build.gradle实例化一个org.gradle.api.Project类，并且能够通过project
+        变量使其隐式可用
+            属性：（用来唯一确定一个组件）
+                group
+                name 确定组建名称的
+                version    name的版本号
+            方法：
+                apply
+                dependencies 声明项目依赖于哪些jar包
+                repositories 仓库，指定去哪个仓库找依赖的jar包
+                task  用来声明项目有什么任务
+
+            属性的其他配置方式：
+                ext
+                gradle.properties
+    3.任务
+        任务对应org.gradle.api.Task.主要包括任务动作和任务依赖。任务动作定义
+        了一个最小的工作单元。可以定义依赖于其他任务、动作序列和执行条件。
+
+        重要方法：
+            dependsOn 声明任务依赖
+            doFirst 在动作列表的前面添加一个动作
+            doLast   <<是简写，在任务列表的后面添加一个动作
+
+    4.构建生命周期
+        初始化
+        配置
+        执行
+
+
+六、依赖管理
+    1.几乎所有的基于jvm的软件项目都需要依赖外部类库来重用现有的功能。自动化
+    的依赖管理可以明确依赖的版本，可以解决因传递性依赖带来的版本冲突。
+    2.工件坐标（理解为一个jar包）
+        group
+        name
+        version
+    3.常用仓库
+        mavenLocal/mavenCentral/jcenter
+
+        自定义的maven仓库
+
+        文件仓库（不建议使用）
+    4.依赖的传递性
+    5.依赖阶段配置
+        编译阶段：
+            compile
+            runtime
+        测试阶段：
+            testCompile
+            testRuntime
+
+        多数时候使用的是编译阶段的依赖
+    6.依赖写法
+        依赖阶段 'group:name:version' 这是简写
+
+    7.解决版本冲突
+
+七、多项目构建
+    1.项目模块化
+        在企业项目中，包层次和类关系比较复杂，把代码拆分成模块通常是最佳时间，这需要
+        你清晰的划分功能的边界，比如把业务逻辑和书记持久化拆分开来。项目符合高内聚低耦合时，
+        模块化就变得很容易，这是一跳非常好的软件开发实践。
+    2.配置子项目
+        配置要求：
+
+            ①所有项目应用java插件
+                先把每个子项目下的apply plugin: 'java'和sourceCompatibility=1.8删除
+                在根build.gradle进行配置
+                allprojects{
+                    apply plugin: 'java'
+                    sourceCompatibility=1.8
+                }
+            ②web子项目打包成war
+                给web模块的build.gradle添加 apply plugin:'war'
+
+            ③所有项目添加logback日志功能
+                subprojects{ //这个方法是给所有的子项目配置
+                    repositories{
+                        mavenCentral()
+                    }
+                    dependencies{
+                        compile 'ch.qos.logback:logback-classic:1.3.0-alpha4'
+                    }
+                }
+            ④统一配置公共属性
+                在整个project的根目录下新建gradle.properties
+                写
+                    group=com.imooc.gradle
+                    version=1.0-SNAPSHOT
+
+
+        在项目的settings.gradle里面会有include '各个模块名'
+        如果要访问一个项目下的另一个模块的类
+            在依赖里面写 compile project(":model")
+
+
+八、gradle测试
+    1.自动化测试
+        一些开源的测试框架比如JUnit，TestNG能帮助你编写可复用的结构化的测试，
+        为了运行这些测试，你要先编译他们，就像编译源代码一样。测试代码的作用
+        仅仅用于测试的情况，不应该被发布到生产环境中，需要把源代码和测试代码
+        分开来
+
+    2.项目布局
+        源文件
+            src
+                main
+                    java
+                    resources
+                test
+                    java
+                    resources
+        输出文件
+            build
+                classes
+                    main
+                    test
+                reports
+                    test
+                test-results
+
+    3.测试配置
+        dependencies{
+            testCompile 'junit:junit:4.11'
+        }
+
+    4.

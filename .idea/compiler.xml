@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AjcSettings">
+    <option name="ajcPath" value="C:/aspectj1.9/lib/aspectjtools.jar" />
+  </component>
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="ajc" />
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <bytecodeTargetLevel>
+      <module name="groovy_main" target="1.8" />
+      <module name="groovy_test" target="1.8" />
+      <module name="todo_main" target="1.8" />
+      <module name="todo_test" target="1.8" />
+      <module name="web_main" target="1.8" />
+      <module name="web_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

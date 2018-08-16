@@ -7,6 +7,11 @@
         <element id="directory" name="classes">
           <element id="module-output" name="35_AOP" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="application" name="JUnit5.0" />
+          <element id="library" level="project" name="Spring-4.3.18.RELEASE" />
+          <element id="library" level="module" name="JUnit4" module-name="35_AOP" />
+        </element>
       </element>
     </root>
   </artifact>

@@ -1,0 +1,83 @@
+
+
+    @Resource(name = "jdbcTemplate")
+    private JdbcTemplate jdbcTemplate;
+
+    @Test
+    public void test01(){
+        jdbcTemplate.update("insert into  account values (null ,?,?)","haha",1000000d);
+
+    }
+
+一、默认模板
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql:///db?serverTimezone=UTC"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+二、DBCP模板
+    就是把类改成BasicDataSource，其他的一样
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql:///db?serverTimezone=UTC"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+三、C3P0模板
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql:///db?serverTimezone=UTC"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+
+四、引入外部属性
+    一般不直接在xml中配置property，因为会导致xml内容臃肿，不方便维护
+
+    1.在src下创建jdbc.properties
+        jdbc.driverClass=.....
+        jdbc.url=...
+        jdbc.username=...
+        jsbc.password=...
+
+    2.在xml文件下
+         <context:property-placeholder location="classpath:jdbc.properties"/>
+    3.写property
+            <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <property name="driverClass" value="${jdbc.driverClass}"/>
+                <property name="jdbcUrl" value="${jdbc.url}"/>
+                <property name="user" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </bean>
+
+五、增删改查
+    1.增删改都是update
+    2.查
+        queryForObject(sql,类型.class,参数..)
+        query(sql,类型.class,参数..)
+
+           @Test
+            public void query(){
+                Object account=jdbcTemplate.queryForObject("select * from account where id=?",new MyRowMapper(),1);
+                System.out.println(account);
+            }
+            //如果返回list的话要用query方法，也是new MyRowMapper()
+
+            class MyRowMapper implements RowMapper{
+
+                @Override
+                public Account mapRow(ResultSet resultSet, int i) throws SQLException {
+                    Account account=new Account();
+                    account.setId(resultSet.getInt("id"));
+                    account.setName(resultSet.getString("name"));
+                    account.setSalary(resultSet.getDouble("salary"));
+                    return account;
+                }
+            }

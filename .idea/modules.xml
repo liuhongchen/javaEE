@@ -36,7 +36,19 @@
       <module fileurl="file://$PROJECT_DIR$/33_SpringDemo01/33_SpringDemo01.iml" filepath="$PROJECT_DIR$/33_SpringDemo01/33_SpringDemo01.iml" />
       <module fileurl="file://$PROJECT_DIR$/34_SpringIOC注解开发/34_SpringIOC注解开发.iml" filepath="$PROJECT_DIR$/34_SpringIOC注解开发/34_SpringIOC注解开发.iml" />
       <module fileurl="file://$PROJECT_DIR$/35_AOP/35_AOP.iml" filepath="$PROJECT_DIR$/35_AOP/35_AOP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/36_AOP注解/36_AOP注解.iml" filepath="$PROJECT_DIR$/36_AOP注解/36_AOP注解.iml" />
+      <module fileurl="file://$PROJECT_DIR$/37_SpringJDBC/37_SpringJDBC.iml" filepath="$PROJECT_DIR$/37_SpringJDBC/37_SpringJDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/38_gradle/38_gradle.iml" filepath="$PROJECT_DIR$/38_gradle/38_gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/groovy.iml" filepath="$PROJECT_DIR$/.idea/modules/groovy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/groovy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/groovy_main.iml" group="groovy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/groovy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/groovy_test.iml" group="groovy" />
       <module fileurl="file://$PROJECT_DIR$/javaEE.iml" filepath="$PROJECT_DIR$/javaEE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/todo.iml" filepath="$PROJECT_DIR$/.idea/modules/todo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/todo_main.iml" filepath="$PROJECT_DIR$/.idea/modules/todo_main.iml" group="todo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/todo_test.iml" filepath="$PROJECT_DIR$/.idea/modules/todo_test.iml" group="todo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web.iml" filepath="$PROJECT_DIR$/.idea/modules/web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web_main.iml" group="web" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web_test.iml" filepath="$PROJECT_DIR$/.idea/modules/web_test.iml" group="web" />
     </modules>
   </component>
 </project>

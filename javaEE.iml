@@ -12,5 +12,6 @@
     <orderEntry type="library" name="commons-dbcp-1.4" level="project" />
     <orderEntry type="library" name="c3p0-0.9.1.2" level="project" />
     <orderEntry type="library" name="jquery-3.2.1" level="application" />
+    <orderEntry type="library" name="aspectjrt" level="project" />
   </component>
 </module>

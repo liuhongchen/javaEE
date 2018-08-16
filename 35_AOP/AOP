@@ -1,0 +1,108 @@
+一、AOP：面向切面编程。是OOP的扩展和延申，解决OOP开发遇到的问题
+    采用横向抽取机制，使用动态代理
+    AOP可以进行权限校验，日志记录，性能监控，事务控制
+    Spring底层的AOP实现原理：动态代理
+        JDK动态代理：只能对实现了接口的类产生代理
+        Cglib动态代理（类似于javassist第三方代理技术）：可以对没有实现接口的类产生代理对象
+
+二、AOP开发常用术语
+    1.Joinpoint 连接点。被拦截到的点。在spring中这些点指的是方法，因为spring只支持方法类型的点
+            就是指一个类中可以被增强的方法
+    2.Pointcut  切入点。我们要对哪些Joinpoint进行拦截的定义
+            就是指可以被增强的方法中，被我选中增强的方法
+    3.Advice    通知/增强。拦截Joinpoint之后要做的事就是通知。分为前置通知、后置通知、异常通知、最终通知、环绕通知（切面要完成的功能）
+            方法层面的增强
+            前置通知：就是指增强切入点的方法。
+    4.Introduction 引介。是一种特殊通知在不修改代码的前提下，可以在运行期动态地为类提供一些Field或Method
+            类层面的增强
+    5.Target    目标对象。代理的目标对象
+    6.Weaving   织入。把增强应用到目标对象来创建新的代理对象的过程。
+            代表的是一个过程，将通知（Advice）应用到目标（Target）的过程。
+    7.Proxy     代理。一个类被AOP增强代理后，就产生一个结果代理类。
+    8.Aspect    切面。是指多个切入点和多个通知（引介）的结合
+
+三、AOP入门（XML方式）
+    <aop:pointcut expression="execution(......)" id=""/>
+
+    <aop:aspect ref="那个切面类的bean id">
+        <aop:before method="checkPri" pointcut-ref="productDao"/>
+    </aop:aspect>
+四、通知类型
+    1.前置通知
+        增强方法执行前进行的操作
+        可以获得切入点的信息
+        <aop:before method="checkPri" pointcut-ref="productDao"/>
+    2.后置通知
+        增强方法执行后进行的操作
+        可以获得方法的返回值
+        <aop:after-returning method="checkPri" pointcut-ref="productDao" returning="result"/>
+    3，环绕通知
+        增强方法执行前后都进行的操作
+        可以阻止目标方法的执行
+        <aop:around method="checkPri" pointcut-ref="productDao" />
+    4.异常抛出通知
+        在程序出现异常的时候进行的操作
+        <aop:after-throwing method="checkPri" pointcut-ref="productDao" />
+    5.最终通知
+        无论代码是否有异常，总是会执行
+    6.引介通知(不用会）
+
+五、切入点表达式写法
+    基于execution函数来完成
+        [访问修饰符] 方法返回值 包名.类名.方法名(参数)
+        public void demo01.ProductDao.save(..)
+        任何一个部分都可以用*来表示
+        +表示此类和基类
+        ..表示此类和所有子类
+
+六、AOP入门(注解）
+    1.在配置文件中编写目标类bean
+    2.在配置文件中开启注解的AOP开发
+            <aop:aspectj-autoproxy/>
+    3.在切面类使用注解
+        在切面类声明上面写 @Aspect
+
+        在通知方法声明上面写注解
+            @Before(value="exccution(* demo01.OrderDao.save(..))")
+
+
+@Aspect
+public class MyAspectAnno {
+                    也可以用这种方法：
+                    @Pointcut(value="execution(* demo01.OrderDao.save(..))")
+                    private void pointCutSave(){};
+                    @Before(value="MyAspectAnno.pointCutSave()")
+                    public void before(){
+                        System.out.println("before");
+                    }
+
+
+    @Before(value="execution(* demo01.OrderDao.save(..))")
+    public void before(){
+        System.out.println("before");
+    }
+
+    @AfterReturning(value="execution(* demo01.OrderDao.update(..))",returning = "result")
+    public void after(String result){
+        System.out.println("after");
+        System.out.println(result);
+    }
+
+    @Around(value="execution(* demo01.OrderDao.delete(..))")
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("环绕前增强");
+        Object obj=joinPoint.proceed();//用来执行目标切入点方法
+        System.out.println("环绕后增强");
+        return obj;
+    }
+
+    @AfterThrowing(value="execution(* demo01.OrderDao.find(..))")
+    public void afterThrowing(){//只有对应的方法里面出现异常才会执行这个方法
+        System.out.println("异常抛出增强");
+    }
+
+    @After(value="execution(* demo01.OrderDao.find(..))")
+    public void last(){//不管目标方法有没有异常都会执行
+        System.out.println("最终增强");
+    }
+}
